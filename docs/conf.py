@@ -21,11 +21,11 @@ import sys
 # from importlib.metadata import version as imversion
 
 
-print("python exec:", sys.executable)
-print("sys.path:", sys.path)
-root = pathlib.Path(__file__).parent.parent.absolute()
-os.environ["PYTHONPATH"] = str(root)
-sys.path.insert(0, str(root))
+# print("python exec:", sys.executable)
+# print("sys.path:", sys.path)
+# root = pathlib.Path(__file__).parent.parent.absolute()
+# os.environ["PYTHONPATH"] = str(root)
+# sys.path.insert(0, str(root))
 
 # import ocean_model_skill_assessor  # isort:skip
 
