@@ -14,11 +14,11 @@ import os
 import pathlib
 import sys
 
-# The version info for the project you're documenting, acts as replacement for
-# |version| and |release|, also used in various other places throughout the
-# built documents.
-# see https://pypi.org/project/setuptools-scm/ for details
-from importlib.metadata import version as imversion
+# # The version info for the project you're documenting, acts as replacement for
+# # |version| and |release|, also used in various other places throughout the
+# # built documents.
+# # see https://pypi.org/project/setuptools-scm/ for details
+# from importlib.metadata import version as imversion
 
 
 print("python exec:", sys.executable)

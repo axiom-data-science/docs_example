@@ -22,3 +22,11 @@ Can push locally-compiled docs to the GitHub Pages site (instead of using Read t
 
 ## To additionally use Read the Docs to compile remotely
 
+To enable that the docs are being built for each release, just head over to ReadTheDocs, link your account with github and link your repository.
+
+The only option you need to enable is in [Read the Docs for your project](https://readthedocs.org/projects/docs-example-axds/): 
+`Admin > Advanced Settings > Default Settings > Install Project`
+
+If you want to have a new version of your docs built for each submitted PR (very helpful when working on the docs themselves), navigate to the project and click `Admin>Advanced Settings>Build pull requests` for this project.
+
+By default RTD does not trigger a build for releases. So if you want your docs to show your shiny new version of the docs for each release, go to your repo `Settings > Webhooks`, find the readthedocs hook, click on it and add a checkmark for Releases under the "Which events would you like to trigger this webhook?" section.
