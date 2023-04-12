@@ -1,0 +1,6 @@
+name: example
+channels:
+  - conda-forge
+dependencies:
+  - jupyterlab
+  - numpy
