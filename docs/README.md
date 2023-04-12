@@ -30,10 +30,13 @@ Can convert exactly back from md to notebook with:
 
     jupytext MD.md --to ipynb
 
+Both files are present in the repository but if you had the md version, you would only want to git-track that one.
 
 ## To additionally use Read the Docs to compile remotely
 
 To enable that the docs are being built for each release, just head over to ReadTheDocs, link your account with github and link your repository.
+
+You may also want to include a .readthedocs.yaml file in the base level of your repository. More configuration info here: https://docs.readthedocs.io/en/stable/config-file/v2.html. I needed that to get the RTD build to run successfully.
 
 The only option you need to enable is in [Read the Docs for your project](https://readthedocs.org/projects/docs-example-axds/): 
 `Admin > Advanced Settings > Default Settings > Install Project`
