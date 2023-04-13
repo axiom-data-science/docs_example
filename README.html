@@ -135,7 +135,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -186,7 +186,7 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
@@ -194,13 +194,44 @@
         <article role="main">
           <section id="how-to-make-docs">
 <h1>How to make docs<a class="headerlink" href="#how-to-make-docs" title="Permalink to this heading">#</a></h1>
-<p>Add to docs by making new notebook or markdown pages and storing them in this directory. For notebooks, you can prerun them so they look correct.</p>
-<p>Add them by name to <code class="docutils literal notranslate"><span class="pre">index.rst</span></code>.</p>
+<section id="running-locally">
+<h2>Running locally<a class="headerlink" href="#running-locally" title="Permalink to this heading">#</a></h2>
+<p>Add to docs by making new notebook or markdown pages and storing them in this directory.</p>
+<p>If you pre-run your notebooks and save the outputs, you can use <code class="docutils literal notranslate"><span class="pre">jupyter_execute_notebooks</span> <span class="pre">=</span> <span class="pre">&quot;off&quot;</span></code> to just render what is already in your notebook.
+If you don’t pre-run your notebooks and don’t save the outputs, you can have Myst-NB run them with <code class="docutils literal notranslate"><span class="pre">jupyter_execute_notebooks</span> <span class="pre">=</span> <span class="pre">&quot;auto&quot;</span></code> (or other options available, see https://myst-nb.readthedocs.io/en/v0.9.0/use/execute.html).</p>
+<p>Add new pages by name to <code class="docutils literal notranslate"><span class="pre">index.rst</span></code>.</p>
 <p>Make docs locally with</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>make html
 </pre></div>
 </div>
-<p>Look at files starting from <code class="docutils literal notranslate"><span class="pre">_build/html/index.html</span></code>.</p>
+<p>Look at files at <code class="docutils literal notranslate"><span class="pre">_build/html/index.html</span></code>.</p>
+<p>Can push locally-compiled docs to the GitHub Pages site (instead of using Read the Docs) associated with your repository with the following. If you do this, the pages are available at https://axiom-data-science.github.io/docs_example.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ghp-import -n -p -f _build/html
+</pre></div>
+</div>
+</section>
+<section id="convert-a-notebook-to-markdown">
+<h2>Convert a notebook to markdown<a class="headerlink" href="#convert-a-notebook-to-markdown" title="Permalink to this heading">#</a></h2>
+<p>Use jupytext to convert from notebook to md with myst encoding to be able to compile code:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>jupytext NOTEBOOK.ipynb --to myst
+</pre></div>
+</div>
+<p>Can convert exactly back from md to notebook with:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>jupytext MD.md --to ipynb
+</pre></div>
+</div>
+<p>Both files are present in the repository but if you had the md version, you would only want to git-track that one.</p>
+</section>
+<section id="to-additionally-use-read-the-docs-to-compile-remotely">
+<h2>To additionally use Read the Docs to compile remotely<a class="headerlink" href="#to-additionally-use-read-the-docs-to-compile-remotely" title="Permalink to this heading">#</a></h2>
+<p>To enable that the docs are being built for each release, just head over to ReadTheDocs, link your account with github and link your repository.</p>
+<p>You may also want to include a .readthedocs.yaml file in the base level of your repository. More configuration info here: https://docs.readthedocs.io/en/stable/config-file/v2.html. I needed that to get the RTD build to run successfully.</p>
+<p>The only option you need to enable is in <a class="reference external" href="https://readthedocs.org/projects/docs-example-axds/">Read the Docs for your project</a>:
+<code class="docutils literal notranslate"><span class="pre">Admin</span> <span class="pre">&gt;</span> <span class="pre">Advanced</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Default</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Install</span> <span class="pre">Project</span></code>
+(Actually might not want to install if your package isn’t really meant to be installed like software)</p>
+<p>If you want to have a new version of your docs built for each submitted PR (very helpful when working on the docs themselves), navigate to the project in Read the Docs and click <code class="docutils literal notranslate"><span class="pre">Admin&gt;Advanced</span> <span class="pre">Settings&gt;Build</span> <span class="pre">pull</span> <span class="pre">requests</span></code> for this project.</p>
+<p>By default RTD does not trigger a build for releases. So if you want your docs to show your shiny new version of the docs for each release, go to your repo <code class="docutils literal notranslate"><span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Webhooks</span></code>, find the readthedocs hook, click on it and add a checkmark for Releases under the “Which events would you like to trigger this webhook?” section.</p>
+</section>
 </section>
 
         </article>
@@ -228,8 +259,29 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">How to make docs</a><ul>
+<li><a class="reference internal" href="#running-locally">Running locally</a></li>
+<li><a class="reference internal" href="#convert-a-notebook-to-markdown">Convert a notebook to markdown</a></li>
+<li><a class="reference internal" href="#to-additionally-use-read-the-docs-to-compile-remotely">To additionally use Read the Docs to compile remotely</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
